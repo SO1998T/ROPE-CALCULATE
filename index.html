@@ -4,10 +4,10 @@
 <style>
 :root{--bg:#0f172a;--card:#111827;--text:#e5e7eb;--muted:#9ca3af;--accent:#22d3ee;--error:#f87171;--table-border:rgba(229,231,235,.5);--table-bg:rgba(17,24,39,.55);--table-head-bg:rgba(17,24,39,.75);--header-offset:3.4rem}
 html,body{height:100%;margin:0;background:radial-gradient(1200px 800px at 70% -10%,rgba(34,211,238,.15),transparent 60%),radial-gradient(900px 600px at -10% 110%,rgba(52,211,153,.12),transparent 60%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans JP","Hiragino Sans","Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";line-height:1.6}
-.container{max-width:1480px;margin:6rem auto;padding:2rem;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(6px)}
+.container{max-width:1480px;margin:6rem auto;padding:2rem;background:transparent;border:none;border-radius:16px;box-shadow:none;backdrop-filter:none}
 h1{margin:0 0 .4rem;font-weight:700;letter-spacing:.2px}.hint{color:var(--muted)}
 .layout{display:grid;grid-template-columns:1fr minmax(640px,1040px);gap:1.2rem;align-items:start}
-
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.2rem}
 .field{display:flex;flex-direction:column;gap:.35rem}
 label{font-size:.95rem;color:#f97316}
@@ -36,27 +36,6 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
 .cw-table thead th{background:var(--table-head-bg);font-weight:700}
 .cw-table .lcol{text-align:left;white-space:pre-line}
 @media(min-width: 1600px){.layout{grid-template-columns:1fr minmax(760px,1280px);} .illustration img{max-width:1400px;}}
-
-/* --- layout setup: desktop keeps main left, aside right --- */
-.layout{display:grid;grid-template-columns:1fr minmax(640px,1040px);gap:1.2rem;align-items:start;grid-template-areas:"main aside"}
-.main{grid-area:main}
-.illustration{grid-area:aside}
-.inputs{grid-area:inputs}
-.result{grid-area:result}
-.refs{grid-area:refs}
-
-/* --- responsive: treat <=1024px as single column (smartphones & many tablets in portrait) --- */
-@media(max-width:1024px){
-  .layout{grid-template-columns:1fr !important;grid-template-areas:
-    "inputs"
-    "result"
-    "aside"
-    "refs" !important;}
-  .main{display:contents !important}
-  .illustration{margin-top:.8rem !important}
-  .illustration-inner{position:static !important;top:auto !important}
-}
-
 </style>
 </head>
 <body>
@@ -106,7 +85,7 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
       </div>
     </section>
 
-    <section class="result-card result" aria-live="polite">
+    <section class="result-card" aria-live="polite">
       <div class="formula-title">計算式</div>
       <div class="formula" aria-label="使用している計算式">
         <code class="line">ピット深さ − (バッファ高さ + C/Wクリアランス + ウッドブロック寸法 + ロープ伸び) + かごレベル高さ</code>
@@ -116,7 +95,7 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
       </div>
     </section>
 
-    <section class="ref-section refs" aria-labelledby="cwref-title">
+    <section class="ref-section" aria-labelledby="cwref-title">
       <h2 id="cwref-title" style="margin:.2rem 0 0;font-size:1.02rem;">参考</h2>
       <div class="ref-card" role="region" aria-label="C/Wクリアランスの参考表">
         <header>＜C/Wクリアランス＞</header>
