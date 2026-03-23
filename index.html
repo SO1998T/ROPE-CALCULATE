@@ -52,6 +52,8 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
     "aside"
     "refs";
   }
+  /* let children of .main participate in parent grid to control order */
+  .main{display:contents}
   /* cancel sticky & negative offset on mobile to prevent overlap */
   .illustration{margin-top:.8rem}
   .illustration-inner{position:static;top:auto}
