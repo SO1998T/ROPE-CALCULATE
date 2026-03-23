@@ -7,7 +7,7 @@ html,body{height:100%;margin:0;background:radial-gradient(1200px 800px at 70% -1
 .container{max-width:1480px;margin:6rem auto;padding:2rem;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(6px)}
 h1{margin:0 0 .4rem;font-weight:700;letter-spacing:.2px}.hint{color:var(--muted)}
 .layout{display:grid;grid-template-columns:1fr minmax(640px,1040px);gap:1.2rem;align-items:start}
-@media(max-width:900px){.layout{grid-template-columns:1fr}}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.2rem}
 .field{display:flex;flex-direction:column;gap:.35rem}
 label{font-size:.95rem;color:#f97316}
@@ -37,7 +37,7 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
 .cw-table .lcol{text-align:left;white-space:pre-line}
 @media(min-width: 1600px){.layout{grid-template-columns:1fr minmax(760px,1280px);} .illustration img{max-width:1400px;}}
 
-/* --- layout reflow for mobile: place illustration between formula and reference --- */
+/* --- layout setup: desktop keeps main left, aside right --- */
 .layout{display:grid;grid-template-columns:1fr minmax(640px,1040px);gap:1.2rem;align-items:start;grid-template-areas:"main aside"}
 .main{grid-area:main}
 .illustration{grid-area:aside}
@@ -45,18 +45,16 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
 .result{grid-area:result}
 .refs{grid-area:refs}
 
-@media(max-width:900px){
-  .layout{grid-template-columns:1fr;grid-template-areas:
+/* --- responsive: treat <=1024px as single column (smartphones & many tablets in portrait) --- */
+@media(max-width:1024px){
+  .layout{grid-template-columns:1fr !important;grid-template-areas:
     "inputs"
     "result"
     "aside"
-    "refs";
-  }
-  /* let children of .main participate in parent grid to control order */
-  .main{display:contents}
-  /* cancel sticky & negative offset on mobile to prevent overlap */
-  .illustration{margin-top:.8rem}
-  .illustration-inner{position:static;top:auto}
+    "refs" !important;}
+  .main{display:contents !important}
+  .illustration{margin-top:.8rem !important}
+  .illustration-inner{position:static !important;top:auto !important}
 }
 
 </style>
