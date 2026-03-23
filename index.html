@@ -36,6 +36,27 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
 .cw-table thead th{background:var(--table-head-bg);font-weight:700}
 .cw-table .lcol{text-align:left;white-space:pre-line}
 @media(min-width: 1600px){.layout{grid-template-columns:1fr minmax(760px,1280px);} .illustration img{max-width:1400px;}}
+
+/* --- layout reflow for mobile: place illustration between formula and reference --- */
+.layout{display:grid;grid-template-columns:1fr minmax(640px,1040px);gap:1.2rem;align-items:start;grid-template-areas:"main aside"}
+.main{grid-area:main}
+.illustration{grid-area:aside}
+.inputs{grid-area:inputs}
+.result{grid-area:result}
+.refs{grid-area:refs}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;grid-template-areas:
+    "inputs"
+    "result"
+    "aside"
+    "refs";
+  }
+  /* cancel sticky & negative offset on mobile to prevent overlap */
+  .illustration{margin-top:.8rem}
+  .illustration-inner{position:static;top:auto}
+}
+
 </style>
 </head>
 <body>
@@ -85,7 +106,7 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
       </div>
     </section>
 
-    <section class="result-card" aria-live="polite">
+    <section class="result-card result" aria-live="polite">
       <div class="formula-title">計算式</div>
       <div class="formula" aria-label="使用している計算式">
         <code class="line">ピット深さ − (バッファ高さ + C/Wクリアランス + ウッドブロック寸法 + ロープ伸び) + かごレベル高さ</code>
@@ -95,7 +116,7 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
       </div>
     </section>
 
-    <section class="ref-section" aria-labelledby="cwref-title">
+    <section class="ref-section refs" aria-labelledby="cwref-title">
       <h2 id="cwref-title" style="margin:.2rem 0 0;font-size:1.02rem;">参考</h2>
       <div class="ref-card" role="region" aria-label="C/Wクリアランスの参考表">
         <header>＜C/Wクリアランス＞</header>
