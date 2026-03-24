@@ -36,6 +36,26 @@ input[type=number]:focus{border-color:rgba(34,211,238,.45);box-shadow:0 0 0 4px 
 .cw-table thead th{background:var(--table-head-bg);font-weight:700}
 .cw-table .lcol{text-align:left;white-space:pre-line}
 @media(min-width: 1600px){.layout{grid-template-columns:1fr minmax(760px,1280px);} .illustration img{max-width:1400px;}}
+
+/* スマホ縦画面では参考図を計算式の直後に表示 */
+@media (max-width: 900px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .layout > div {
+    order: 1;
+  }
+  .layout > .illustration {
+    order: 2;
+    position: static;
+    margin-top: 1.2rem;
+  }
+  .illustration-inner {
+    position: static;
+  }
+}
+
 </style>
 </head>
 <body>
